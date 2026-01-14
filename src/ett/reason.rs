@@ -1,6 +1,5 @@
 #[derive(Debug, PartialEq)]
 pub enum HaltReason {
-    UngroundedKnowledge,
-    ContradictionDetected,
-    MetaAuditFailed,
+    Ungrounded,
+    Contradiction,
 }
