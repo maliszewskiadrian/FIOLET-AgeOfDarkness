@@ -1,3 +1,8 @@
+![Rust](https://img.shields.io/badge/rust-1.70%2B-orange)
+![Python](https://img.shields.io/badge/python-3.9%2B-blue)
+![License: MIT](https://img.shields.io/badge/License-MIT-green)
+![Status](https://img.shields.io/badge/status-v1.0%20standard-success)
+
 # FIOLET – AgeOfDarkness v1.0
 
 **FIOLET (Formal Inference & Epistemic Logic Engine)** is a normative AI safety standard
