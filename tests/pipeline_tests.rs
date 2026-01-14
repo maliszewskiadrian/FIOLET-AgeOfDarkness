@@ -1,26 +1,20 @@
-use fiolet::pipeline::engine::{run_pipeline, PipelineResult};
-use fiolet::ett::reason::HaltReason;
+use fiolet::engine::evaluate;
+use fiolet::esv::EpistemicState;
 
 #[test]
-fn pipeline_allows_valid_knowledge() {
-    let result = run_pipeline(true, false);
-    assert_eq!(result, PipelineResult::Output);
+fn full_pipeline_allows_grounded() {
+    let state = evaluate(true, false);
+    assert_eq!(state, EpistemicState::Grounded);
 }
 
 #[test]
-fn pipeline_halts_without_source() {
-    let result = run_pipeline(false, false);
-    assert_eq!(
-        result,
-        PipelineResult::Halt(HaltReason::UngroundedKnowledge)
-    );
+fn full_pipeline_halts_ungrounded() {
+    let state = evaluate(false, false);
+    assert_eq!(state, EpistemicState::Halt);
 }
 
 #[test]
-fn pipeline_halts_on_contradiction() {
-    let result = run_pipeline(true, true);
-    assert_eq!(
-        result,
-        PipelineResult::Halt(HaltReason::ContradictionDetected)
-    );
+fn full_pipeline_halts_contradiction() {
+    let state = evaluate(true, true);
+    assert_eq!(state, EpistemicState::Halt);
 }
