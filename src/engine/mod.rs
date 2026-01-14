@@ -1,17 +1,22 @@
-use crate::esal_core::grounding::classify;
-use crate::meta_esal::audit::audit;
-use crate::ett::trigger::{ett_trigger, ETTState};
-use crate::esv::EpistemicState;
+use crate::ett::trigger::ett_trigger;
+use crate::ett::state::ETTState;
+use crate::esal_core::classification::KnowledgeClass;
 
-pub fn evaluate(has_source: bool, contradiction: bool) -> EpistemicState {
-    let class = classify(has_source, contradiction);
+/// Epistemic state after ETT evaluation.
+#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+pub enum EpistemicState {
+    Grounded,
+    Halt,
+}
 
-    if !audit(class) {
-        return EpistemicState::Halt;
-    }
-
+/// Evaluate epistemic class using ETT.
+///
+/// This function is FAIL-CLOSED:
+/// any error or halt state results in HALT.
+pub fn evaluate_class(class: KnowledgeClass) -> EpistemicState {
     match ett_trigger(class) {
-        ETTState::Allow => EpistemicState::Grounded,
-        ETTState::Halt(_) => EpistemicState::Halt,
+        Ok(ETTState::Allow) => EpistemicState::Grounded,
+        Ok(ETTState::Halt) => EpistemicState::Halt,
+        Err(_) => EpistemicState::Halt,
     }
 }
