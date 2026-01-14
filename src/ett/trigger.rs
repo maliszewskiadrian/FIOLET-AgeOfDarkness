@@ -10,11 +10,7 @@ pub enum ETTState {
 pub fn ett_trigger(class: KnowledgeClass) -> ETTState {
     match class {
         KnowledgeClass::Grounded => ETTState::Allow,
-        KnowledgeClass::Ungrounded => {
-            ETTState::Halt(HaltReason::UngroundedKnowledge)
-        }
-        KnowledgeClass::Contradictory => {
-            ETTState::Halt(HaltReason::ContradictionDetected)
-        }
+        KnowledgeClass::Ungrounded => ETTState::Halt(HaltReason::Ungrounded),
+        KnowledgeClass::Contradictory => ETTState::Halt(HaltReason::Contradiction),
     }
 }
