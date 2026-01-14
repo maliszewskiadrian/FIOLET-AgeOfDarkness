@@ -1,16 +1,16 @@
 use crate::esal_core::classification::KnowledgeClass;
-use super::reason::HaltReason;
 
 #[derive(Debug, PartialEq)]
 pub enum ETTState {
     Allow,
-    Halt(HaltReason),
+    Halt,
 }
 
+/// ETT is a mandatory, irreversible safety gate.
+/// Any non-grounded epistemic state MUST halt generation.
 pub fn ett_trigger(class: KnowledgeClass) -> ETTState {
     match class {
         KnowledgeClass::Grounded => ETTState::Allow,
-        KnowledgeClass::Ungrounded => ETTState::Halt(HaltReason::Ungrounded),
-        KnowledgeClass::Contradictory => ETTState::Halt(HaltReason::Contradiction),
+        _ => ETTState::Halt,
     }
 }
