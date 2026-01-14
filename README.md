@@ -1,25 +1,25 @@
 # FIOLET – AgeOfDarkness v1.0
 
-FIOLET (Formal Inference & Epistemic Logic Engine) to **normatywny standard bezpieczeństwa AI**,
-którego celem jest eliminacja halucynacji poprzez **deterministyczne zatrzymanie generacji**
-w przypadku braku epistemicznego ugruntowania.
+FIOLET (Formal Inference & Epistemic Logic Engine) is a **normative AI safety standard**
+designed to eliminate hallucinations through **deterministic generation halting**
+whenever epistemic grounding cannot be established.
 
-## Cechy
-- brak halucynacji (ETT)
-- deterministyczność
-- mechaniczna refleksyjność epistemiczna
-- falsyfikowalność
-- zgodność z formalną walidacją (TLA+ ready)
+## Features
+- Hallucination prevention (ETT)
+- Deterministic behavior
+- Mechanical epistemic reflexivity
+- Full falsifiability
+- Compatible with formal verification (TLA+ ready)
 
 ## Status
-✅ Standard v1.0 – zamknięty merytorycznie  
-✅ Gotowy do publikacji i dalszych iteracji RFC
+✅ Standard v1.0 – epistemically closed  
+✅ Ready for publication and future RFC iterations
 
-## Uruchomienie
+## Running tests
 ```bash
 cargo test
-Dokumentacja
-Zobacz folder docs/:
+Documentation
+See the docs/ directory:
 
 ESAL
 
@@ -29,21 +29,5 @@ ESV
 
 ETT Protocol
 
-Autor: Adrian Maliszewski
-Licencja: MIT
-
----
-
-## 📄 `Cargo.toml`
-```toml
-[package]
-name = "fiolet-age-of-darkness"
-version = "1.0.0"
-edition = "2021"
-authors = ["Adrian Maliszewski"]
-
-[lib]
-name = "fiolet"
-path = "src/lib.rs"
-
-[dependencies]
+Author: Adrian Maliszewski
+License: MIT
