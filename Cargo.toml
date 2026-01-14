@@ -1,0 +1,17 @@
+[package]
+name = "fiolet-age-of-darkness"
+version = "1.0.0"
+edition = "2021"
+authors = ["Adrian Maliszewski"]
+license = "MIT"
+description = "FIOLET AgeOfDarkness – deterministic epistemic termination standard (ETT)"
+repository = "https://github.com/maliszewskiadrian/FIOLET-AgeOfDarkness"
+readme = "README.md"
+
+[lib]
+name = "fiolet"
+path = "src/lib.rs"
+
+[dependencies]
+
+[dev-dependencies]
