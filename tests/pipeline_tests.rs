@@ -1,4 +1,5 @@
 use fiolet::pipeline::engine::{run_pipeline, PipelineResult};
+use fiolet::ett::reason::HaltReason;
 
 #[test]
 fn pipeline_allows_valid_knowledge() {
@@ -9,11 +10,17 @@ fn pipeline_allows_valid_knowledge() {
 #[test]
 fn pipeline_halts_without_source() {
     let result = run_pipeline(false, false);
-    assert_eq!(result, PipelineResult::Halt);
+    assert_eq!(
+        result,
+        PipelineResult::Halt(HaltReason::UngroundedKnowledge)
+    );
 }
 
 #[test]
 fn pipeline_halts_on_contradiction() {
     let result = run_pipeline(true, true);
-    assert_eq!(result, PipelineResult::Halt);
+    assert_eq!(
+        result,
+        PipelineResult::Halt(HaltReason::ContradictionDetected)
+    );
 }
