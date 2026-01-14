@@ -25,3 +25,31 @@ fn ett_halts_contradiction() {
         ETTState::Halt(HaltReason::Contradiction)
     );
 }
+use fiolet::ett::trigger::ett_trigger;
+use fiolet::ett::state::ETTState;
+use fiolet::ett::reason::ETTReason;
+use fiolet::esal_core::classification::KnowledgeClass;
+
+#[test]
+fn ett_allows_grounded() {
+    assert_eq!(
+        ett_trigger(KnowledgeClass::Grounded),
+        Ok(ETTState::Allow)
+    );
+}
+
+#[test]
+fn ett_halts_ungrounded_with_reason() {
+    assert_eq!(
+        ett_trigger(KnowledgeClass::Ungrounded),
+        Err(ETTReason::Ungrounded)
+    );
+}
+
+#[test]
+fn ett_halts_contradiction_with_reason() {
+    assert_eq!(
+        ett_trigger(KnowledgeClass::Contradictory),
+        Err(ETTReason::Contradiction)
+    );
+}
