@@ -1,5 +1,6 @@
 #[derive(Debug, PartialEq)]
-pub enum HaltReason {
+pub enum ETTReason {
     Ungrounded,
     Contradiction,
+    MetaMismatch,
 }
