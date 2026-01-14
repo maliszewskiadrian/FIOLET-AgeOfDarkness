@@ -1,4 +1,5 @@
 use fiolet::ett::trigger::{ett_trigger, ETTState};
+use fiolet::ett::reason::HaltReason;
 use fiolet::esal_core::classification::KnowledgeClass;
 
 #[test]
@@ -13,7 +14,7 @@ fn ett_allows_grounded() {
 fn ett_halts_ungrounded() {
     assert_eq!(
         ett_trigger(KnowledgeClass::Ungrounded),
-        ETTState::Halt
+        ETTState::Halt(HaltReason::Ungrounded)
     );
 }
 
@@ -21,6 +22,6 @@ fn ett_halts_ungrounded() {
 fn ett_halts_contradiction() {
     assert_eq!(
         ett_trigger(KnowledgeClass::Contradictory),
-        ETTState::Halt
+        ETTState::Halt(HaltReason::Contradiction)
     );
 }
