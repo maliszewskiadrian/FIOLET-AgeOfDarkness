@@ -1,7 +1,5 @@
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, PartialEq)]
 pub enum ETTState {
-    Init,
-    Evaluating,
-    Generating,
-    Halted,
+    Allow,
+    Halt,
 }
